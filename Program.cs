@@ -87,7 +87,7 @@ for (int i = 0; i < maxPets; i++)
 do
 {
     Console.Clear();
-
+    
     Console.WriteLine("Welcome to the Contoso PetFriends app. Your main menu options are:");
     Console.WriteLine(" 1. List all of our current pet information");
     Console.WriteLine(" 2. Add a new animal friend to the ourAnimals array");
@@ -176,7 +176,7 @@ do
                             validEntry = true;
                         }
                     }
-                } while (validEntry == false);
+                } while (!validEntry);
 
                 // build the animal the ID number - for example C1, C2, D3 (for Cat 1, Cat 2, Dog 3)
                 animalID = animalSpecies.Substring(0, 1) + (petCount + 1).ToString();
@@ -296,9 +296,15 @@ do
                     for (int j = 0; j < 6; j++)
                     {
                         //Console.WriteLine(ourAnimals[i,j]);
-                        if (ourAnimals[i, 3] == " ?")
+                        
+                        if (ourAnimals[i, 2].Trim() == "Age: ?")
                         {
-                            Console.WriteLine($"Enter an age for {animalID}");
+                            Console.WriteLine("Digite uma idade válida");
+                            var newAge = Console.ReadLine();
+
+                            ourAnimals[i, 2] = $"Age: {newAge}";
+                            
+                            //Console.WriteLine($"Enter an age for {animalID}");
                             readResult = Console.ReadLine();
                         }
                     }
