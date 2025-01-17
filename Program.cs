@@ -299,11 +299,23 @@ do
                         
                         if (ourAnimals[i, 2].Trim() == "Age: ?")
                         {
-                            Console.WriteLine("Digite uma idade válida");
-                            var newAge = Console.ReadLine();
+                            do
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("Insert one valid age");
 
-                            ourAnimals[i, 2] = $"Age: {newAge}";
-                            
+                                var newAge = Console.ReadLine();
+                                if (!string.IsNullOrEmpty(newAge))
+                                {
+                                    ourAnimals[i, 2] = $"Age: {newAge}";
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Age invalid, please insert valid age");
+                                }
+
+                                ourAnimals[i, 2] = $"Age: {newAge}";
+                            }while (true);
                             //Console.WriteLine($"Enter an age for {animalID}");
                             readResult = Console.ReadLine();
                         }
