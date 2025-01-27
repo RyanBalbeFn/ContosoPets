@@ -316,7 +316,6 @@ do
 
                                 ourAnimals[i, 2] = $"Age: {newAge}";
                             }while (true);
-                            //Console.WriteLine($"Enter an age for {animalID}");
                             readResult = Console.ReadLine();
                         }
                     }
