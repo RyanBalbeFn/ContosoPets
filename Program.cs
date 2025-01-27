@@ -245,7 +245,7 @@ do
                         {
                             animalNickname = "tbd";
                         }
-                    }
+                    }                                                           
                 } while (validEntry == false);
 
                 // store the pet information in the ourAnimals array (zero based)
@@ -288,47 +288,47 @@ do
 
         case "3":
 
+            var allAgeIsValid = true;
+
             for (int i = 0; i < maxPets; i++ )
             {
                 if (ourAnimals[i, 2] != "Age: ")
                 {
-                    Console.WriteLine();
-                    for (int j = 0; j < 6; j++)
-                    {
-                        //Console.WriteLine(ourAnimals[i,j]);
-                        
+
                         if (ourAnimals[i, 2].Trim() == "Age: ?")
                         {
-                            do
-                            {
-                                Console.WriteLine();
-                                Console.WriteLine("Insert one valid age");
+                            bool isValidAge = false;
+                        do
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine($"The animal with {ourAnimals[i, 0]} don't have valid age.");
+                            Console.WriteLine("Please, insert one valid age!");
 
-                                var newAge = Console.ReadLine();
-                                if (!string.IsNullOrEmpty(newAge))
+                            var input = Console.ReadLine();
+
+                            if (int.TryParse(input, out int newAge) && newAge > 0)
                                 {
                                     ourAnimals[i, 2] = $"Age: {newAge}";
+                                    isValidAge = true;
                                 }
                                 else
                                 {
                                     Console.WriteLine("Age invalid, please insert valid age");
                                 }
-
-                                ourAnimals[i, 2] = $"Age: {newAge}";
-                            }while (true);
-                            readResult = Console.ReadLine();
+                            } while (!isValidAge);
                         }
-                    }
-                }
-
+                }   
             }
+                Console.WriteLine();
+                Console.WriteLine("All pets have they ages valid!");
+
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
             break;
 
         case "4":
             // Ensure animal nicknames and personality descriptions are complete
-            Console.WriteLine("Challenge Project - please check back soon to see progress.");
+            for (int i = 0; i <maxPets; i++)
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
             break;
