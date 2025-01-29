@@ -288,16 +288,14 @@ do
 
         case "3":
 
-            var allAgeIsValid = true;
-
-            for (int i = 0; i < maxPets; i++ )
+            for (int i = 0; i < maxPets; i++)
             {
                 if (ourAnimals[i, 2] != "Age: ")
                 {
 
-                        if (ourAnimals[i, 2].Trim() == "Age: ?")
-                        {
-                            bool isValidAge = false;
+                    if (ourAnimals[i, 2].Trim() == "Age: ?")
+                    {
+                        bool isValidAge = false;
                         do
                         {
                             Console.WriteLine();
@@ -307,20 +305,68 @@ do
                             var input = Console.ReadLine();
 
                             if (int.TryParse(input, out int newAge) && newAge > 0)
+                            {
+                                ourAnimals[i, 2] = $"Age: {newAge}";
+                                isValidAge = true;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Age invalid, please insert valid age");
+                            }
+                        } while (!isValidAge);
+                    }
+                }
+                if (ourAnimals[i, 0] != "ID #: ")
+                {
+                    if (ourAnimals[i, 4].Trim() == "Physical description:" || ourAnimals[i, 4] == "Physical description: tbd")
+                    {
+                        bool isValidDescription = false;
+                        do
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine($"The animal with {ourAnimals[i, 0]} don't have valid Physical description.");
+                            Console.WriteLine("Please insert physical description containig (size, color, breed, gender, weight, housebroken)");
+
+                            var newDescriptions = Console.ReadLine();
+
+                            if (string.IsNullOrWhiteSpace(newDescriptions))
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("Please insert physical description containig (size, color, breed, gender, weight, housebroken)");
+
+                            }
+                            else
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("You have shure the result?");
+                                Console.WriteLine("'y' for yes and 'n' for not!");
+                                readResult = Console.ReadLine();
+
+                                if (readResult == "y")
                                 {
-                                    ourAnimals[i, 2] = $"Age: {newAge}";
-                                    isValidAge = true;
+
+                                    Console.WriteLine();
+                                    Console.WriteLine("All characteristics was are write with success!");
+                                    ourAnimals[i, 4] = $"Physical description: {newDescriptions}";
+                                    isValidDescription = true;
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Age invalid, please insert valid age");
+                                    Console.WriteLine("Please, rewrite more carefully!");
+                                    var finalResult = Console.ReadLine();
+                                    ourAnimals[i, 4] = $"Physical descriptions {finalResult}";
+
+                                    Console.WriteLine("Press the Enter key to continue.");
+                                    isValidDescription = true;
                                 }
-                            } while (!isValidAge);
-                        }
-                }   
+                            }
+                        } while (!isValidDescription);
+
+                    }
+                }
             }
-                Console.WriteLine();
-                Console.WriteLine("All pets have they ages valid!");
+            Console.WriteLine();
+                Console.WriteLine("All pets have they ages and physical descriptions valid!");
 
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
