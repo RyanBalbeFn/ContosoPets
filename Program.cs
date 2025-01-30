@@ -375,7 +375,51 @@ do
         case "4":
             // Ensure animal nicknames and personality descriptions are complete
             for (int i = 0; i <maxPets; i++)
-            Console.WriteLine("Press the Enter key to continue.");
+            {
+                if (ourAnimals[i, 0] != "ID #: ")
+                {
+                    if (ourAnimals[i, 3] == "Nickname: ")
+                    {
+                        bool nameIsValid = false;
+                        do
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine($"The animal with {ourAnimals[i, 0]} doesn't have one NickName");
+                            Console.WriteLine("Please, insert the NickName");
+
+                            var newName = Console.ReadLine();
+
+                            if (string.IsNullOrWhiteSpace(newName))
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine("Please insert one NickName valid!");
+                            }
+                            else
+                            {
+                                Console.WriteLine();
+                                Console.WriteLine($"You have shure the NickName is {newName}?");
+                                Console.WriteLine("Write 'y' for yes and 'n' for not!");
+
+                                var reNickName = Console.ReadLine();
+
+                                if (reNickName == "y")
+                                {
+                                    Console.WriteLine();
+                                    Console.WriteLine($"The NickName {newName} the added in the system!");
+                                    ourAnimals[i, 3] = $"NickName: {newName}";
+                                    nameIsValid = true;
+
+                                    Console.WriteLine();
+                                    Console.WriteLine("Press the Enter key for continue.");
+
+                                }
+                            }
+
+                        } while (!nameIsValid);
+                    }
+                }
+            }
+            
             readResult = Console.ReadLine();
             break;
 
