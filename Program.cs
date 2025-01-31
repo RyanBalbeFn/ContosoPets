@@ -401,7 +401,7 @@ do
             break;
 
         case "8":
-            // Display all dogs with a specified characteristic
+            // Display all dogs with a specified characteristic 
             Console.WriteLine("UNDER CONSTRUCTION - please check back next month to see progress.");
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
